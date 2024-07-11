@@ -1220,7 +1220,7 @@ class Smartbridge:
         """Load the areas from the Smart Bridge."""
         _LOG.debug("Loading areas from the Smart Bridge")
         area_json = await self._request("ReadRequest", "/area")
-        for area in area_json.Body["Areas"]:
+        for area in area_json.Body.get("Areas",[]):
             area_id = id_from_href(area["href"])
             parent_id = None
             if "Parent" in area:
